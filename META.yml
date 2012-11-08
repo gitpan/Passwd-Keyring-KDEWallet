@@ -11,6 +11,13 @@ configure_requires:
   Module::Build: 0.40
 dynamic_config: 1
 generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
+keywords:
+  - passwords
+  - security
+  - secure-storage
+  - keyring
+  - KDE
+  - KDEWallet
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,10 +26,13 @@ name: Passwd-Keyring-KDEWallet
 provides:
   Passwd::Keyring::KDEWallet:
     file: lib/Passwd/Keyring/KDEWallet.pm
-    version: 0.20
+    version: 0.2001
 requires:
   Net::DBus: 0
   perl: 5.006
 resources:
+  bugtracker: https://bitbucket.org/Mekk/perl-keyring-auto/issues
+  homepage: http://bitbucket.org/Mekk/perl-keyring-auto
   license: http://dev.perl.org/licenses/
-version: 0.20
+  repository: http://bitbucket.org/Mekk/perl-keyring-auto
+version: 0.2001

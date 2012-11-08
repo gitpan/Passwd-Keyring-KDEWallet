@@ -22,6 +22,15 @@ my $builder = Module::Build->new(
     },
     add_to_cleanup      => [ 'Passwd-Keyring-KDEWallet-*' ],
     create_makefile_pl => 'traditional',
+    meta_merge => {
+        keywords => [ qw/ passwords security secure-storage keyring KDE KDEWallet / ],
+        resources => {
+            license     => 'http://dev.perl.org/licenses/',
+            homepage    => 'http://bitbucket.org/Mekk/perl-keyring-auto',
+            repository => 'http://bitbucket.org/Mekk/perl-keyring-auto',
+            bugtracker => 'https://bitbucket.org/Mekk/perl-keyring-auto/issues',
+        },
+    },
 );
 
 $builder->create_build_script();

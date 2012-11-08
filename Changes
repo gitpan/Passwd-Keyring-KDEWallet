@@ -1,5 +1,8 @@
 Revision history for Passwd::Keyring::KDEWallet
 
+0.2001  2012-11-08
+        Small documentation fixes, more info in CPAN metadata
+
 0.20    2012-11-08
         First version (working, functionality equivalent to Passwd::Keyring::Gnome)
 

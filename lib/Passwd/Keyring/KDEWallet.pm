@@ -12,11 +12,11 @@ Passwd::Keyring::KDEWallet - Password storage implementation based on KDE Wallet
 
 =head1 VERSION
 
-Version 0.20
+Version 0.2001
 
 =cut
 
-our $VERSION = '0.20';
+our $VERSION = '0.2001';
 
 our $APP_NAME = "Passwd::Keyring";
 our $FOLDER_NAME = "Perl-Passwd-Keyring";
@@ -34,6 +34,10 @@ KDE Wallet based implementation of L<Passwd::Keyring>.
     my $password = $keyring->get_password("John", "my-pseudodomain");
     # plus
     $keyring->clear_password("John", "my-pseudodomain");
+
+Note: see L<Passwd::Keyring::Auto::KeyringAPI> for detailed comments on
+keyring method semantics (this document is installed with
+Passwd::Keyring::Auto package).
 
 =head1 SUBROUTINES/METHODS
 
@@ -152,10 +156,9 @@ sub is_persistent {
 
 =head1 AUTHOR
 
-Marcin Kasperski, C<< <Marcin.Kasperski at mekk.waw.pl> >>
+Marcin Kasperski
 
-Code heavily inspired by L<http://www.perlmonks.org/?node_id=869620>
-and partially by python keyring.
+Approach inspired by L<http://www.perlmonks.org/?node_id=869620>.
 
 =head1 BUGS
 
@@ -170,7 +173,11 @@ You can find documentation for this module with the perldoc command.
 
 You can also look for information at:
 
-    L<https://bitbucket.org/Mekk/perl-keyring-kdewallet>
+L<http://search.cpan.org/~mekk/Passwd-Keyring-KDEWallet/>
+
+Source code is tracked at:
+
+L<https://bitbucket.org/Mekk/perl-keyring-kdewallet>
 
 =head1 LICENSE AND COPYRIGHT
 
