@@ -1,0 +1,50 @@
+{
+   "abstract" : "Password storage implementation based on KDE Wallet.",
+   "author" : [
+      "Marcin Kasperski <Marcin.Kasperski@mekk.waw.pl>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Passwd-Keyring-KDEWallet",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "ExtUtils::CBuilder" : "0",
+            "Module::Build" : "0.19",
+            "Test::More" : "0",
+            "Test::Pod::Coverage" : "1.000008"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.40"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Net::DBus" : "0",
+            "perl" : "5.006"
+         }
+      }
+   },
+   "provides" : {
+      "Passwd::Keyring::KDEWallet" : {
+         "file" : "lib/Passwd/Keyring/KDEWallet.pm",
+         "version" : "0.20"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "0.20"
+}
