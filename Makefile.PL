@@ -10,9 +10,10 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Passwd/Keyring/KDEWallet.pm',
           'PREREQ_PM' => {
                            'Test::More' => 0,
-                           'Test::Pod::Coverage' => '1.000008',
+                           'Test::Pod::Coverage' => '1.0',
                            'Net::DBus' => 0,
                            'Module::Build' => '0.19',
+                           'Pod::Readme' => 0,
                            'ExtUtils::CBuilder' => 0
                          }
         )

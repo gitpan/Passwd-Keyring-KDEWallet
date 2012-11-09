@@ -5,10 +5,11 @@ author:
 build_requires:
   ExtUtils::CBuilder: 0
   Module::Build: 0.19
+  Pod::Readme: 0
   Test::More: 0
-  Test::Pod::Coverage: 1.000008
+  Test::Pod::Coverage: 1.0
 configure_requires:
-  Module::Build: 0.40
+  Module::Build: 0.36
 dynamic_config: 1
 generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 keywords:
@@ -26,7 +27,7 @@ name: Passwd-Keyring-KDEWallet
 provides:
   Passwd::Keyring::KDEWallet:
     file: lib/Passwd/Keyring/KDEWallet.pm
-    version: 0.2001
+    version: 0.2002
 requires:
   Net::DBus: 0
   perl: 5.006
@@ -35,4 +36,4 @@ resources:
   homepage: http://bitbucket.org/Mekk/perl-keyring-auto
   license: http://dev.perl.org/licenses/
   repository: http://bitbucket.org/Mekk/perl-keyring-auto
-version: 0.2001
+version: 0.2002
