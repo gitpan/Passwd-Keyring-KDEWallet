@@ -3,7 +3,7 @@ NAME
     KDE Wallet.
 
 VERSION
-    Version 0.2003
+    Version 0.2004
 
 SYNOPSIS
     KDE Wallet based implementation of Passwd::Keyring.

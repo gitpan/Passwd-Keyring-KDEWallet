@@ -12,11 +12,11 @@ Passwd::Keyring::KDEWallet - Password storage implementation based on KDE Wallet
 
 =head1 VERSION
 
-Version 0.2003
+Version 0.2004
 
 =cut
 
-our $VERSION = '0.2003';
+our $VERSION = '0.2004';
 
 our $APP_NAME = "Passwd::Keyring";
 our $FOLDER_NAME = "Perl-Passwd-Keyring";
