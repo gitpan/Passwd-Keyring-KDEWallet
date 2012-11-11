@@ -3,7 +3,7 @@ NAME
     KDE Wallet.
 
 VERSION
-    Version 0.2002
+    Version 0.2003
 
 SYNOPSIS
     KDE Wallet based implementation of Passwd::Keyring.
@@ -46,14 +46,14 @@ SUBROUTINES/METHODS
 
     - group - name for the password group (used as KDE Wallet folder name)
 
-  set_password(username, password, domain)
-    Sets (stores) password identified by given domain for given user
+  set_password(username, password, realm)
+    Sets (stores) password identified by given realm for given user
 
-  get_password($user_name, $domain)
+  get_password($user_name, $realm)
     Reads previously stored password for given user in given app. If such
     password can not be found, returns undef.
 
-  clear_password($user_name, $domain)
+  clear_password($user_name, $realm)
     Removes given password (if present)
 
   is_persistent

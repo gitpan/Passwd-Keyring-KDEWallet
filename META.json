@@ -4,7 +4,7 @@
       "Marcin Kasperski <Marcin.Kasperski@mekk.waw.pl>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110440",
    "keywords" : [
       "passwords",
       "security",
@@ -24,10 +24,10 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "ExtUtils::CBuilder" : "0",
+            "ExtUtils::CBuilder" : 0,
             "Module::Build" : "0.19",
-            "Pod::Readme" : "0",
-            "Test::More" : "0",
+            "Pod::Readme" : 0,
+            "Test::More" : 0,
             "Test::Pod::Coverage" : "1.0"
          }
       },
@@ -38,7 +38,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Net::DBus" : "0",
+            "Net::DBus" : 0,
             "perl" : "5.006"
          }
       }
@@ -46,7 +46,7 @@
    "provides" : {
       "Passwd::Keyring::KDEWallet" : {
          "file" : "lib/Passwd/Keyring/KDEWallet.pm",
-         "version" : "0.2002"
+         "version" : "0.2003"
       }
    },
    "release_status" : "stable",
@@ -62,5 +62,5 @@
          "url" : "http://bitbucket.org/Mekk/perl-keyring-auto"
       }
    },
-   "version" : "0.2002"
+   "version" : "0.2003"
 }

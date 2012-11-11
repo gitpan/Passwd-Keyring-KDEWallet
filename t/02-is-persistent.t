@@ -2,7 +2,14 @@
 
 use strict;
 use warnings;
-use Test::Simple tests => 2;
+use Test::More;
+
+if($ENV{DESKTOP_SESSION} || $ENV{DBUS_SESSION_BUS_ADDRESS}) {
+    plan tests => 2;
+} else {
+    plan skip_all => "Keyring not available (not running under KDE/Gnome/other desktop session), skipping tests";
+}
+
 
 use Passwd::Keyring::KDEWallet;
 

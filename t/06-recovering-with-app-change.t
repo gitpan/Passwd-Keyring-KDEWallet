@@ -2,12 +2,19 @@
 
 use strict;
 use warnings;
-use Test::More tests => 16;
+use Test::More;
+
+if($ENV{DESKTOP_SESSION} || $ENV{DBUS_SESSION_BUS_ADDRESS}) {
+    plan tests => 16;
+} else {
+    plan skip_all => "Keyring not available (not running under KDE/Gnome/other desktop session), skipping tests";
+}
+
 
 use Passwd::Keyring::KDEWallet;
 
 my $USER = "Herakliusz";
-my $DOMAIN = "test domain";
+my $REALM = "test realm";
 my $PWD = "arcytajne haslo";
 my $PWD2 = "inny sekret";
 
@@ -24,15 +31,15 @@ my @cleanups;
 
     ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet',   'new() works' );
 
-    ok( ! defined($ring->get_password($USER, $DOMAIN)), "initially unset");
+    ok( ! defined($ring->get_password($USER, $REALM)), "initially unset");
 
-    $ring->set_password($USER, $PWD, $DOMAIN);
+    $ring->set_password($USER, $PWD, $REALM);
     ok(1, "set password");
 
-    ok( $ring->get_password($USER, $DOMAIN) eq $PWD, "normal get works");
+    ok( $ring->get_password($USER, $REALM) eq $PWD, "normal get works");
 
     push @cleanups, sub {
-        ok( $ring->clear_password($USER, $DOMAIN) eq 1, "clearing");
+        ok( $ring->clear_password($USER, $REALM) eq 1, "clearing");
     };
 }
 
@@ -44,7 +51,7 @@ my @cleanups;
 
     ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet', 'second new() works' );
 
-    ok( $ring->get_password($USER, $DOMAIN) eq $PWD, "get from another ring with the same data works");
+    ok( $ring->get_password($USER, $REALM) eq $PWD, "get from another ring with the same data works");
 }
 
 # Only app changes
@@ -53,7 +60,7 @@ my @cleanups;
 
     ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet', 'third new() works' );
 
-    ok( $ring->get_password($USER, $DOMAIN) eq $PWD, "get from another ring with changed app but same group works");
+    ok( $ring->get_password($USER, $REALM) eq $PWD, "get from another ring with changed app but same group works");
 }
 
 # Only group changes
@@ -63,13 +70,13 @@ my $sec_ring;
 
     ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet', 'third new() works' );
 
-    ok( ! defined($ring->get_password($USER, $DOMAIN)), "changing group forces another password");
+    ok( ! defined($ring->get_password($USER, $REALM)), "changing group forces another password");
 
     # To test whether original won't be spoiled
-    $ring->set_password($USER, $PWD2, $DOMAIN);
+    $ring->set_password($USER, $PWD2, $REALM);
 
     push @cleanups, sub {
-        ok( $ring->clear_password($USER, $DOMAIN) eq 1, "clearing");
+        ok( $ring->clear_password($USER, $REALM) eq 1, "clearing");
     };
 }
 
@@ -79,7 +86,7 @@ my $sec_ring;
 
     ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet', 'third new() works' );
 
-    ok( ! defined($ring->get_password($USER, $DOMAIN)), "changing group and app forces another password");
+    ok( ! defined($ring->get_password($USER, $REALM)), "changing group and app forces another password");
 
 }
 
@@ -89,7 +96,7 @@ my $sec_ring;
 
     ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet', 'second new() works' );
 
-    ok( $ring->get_password($USER, $DOMAIN) eq $PWD, "get original after changes in other group works");
+    ok( $ring->get_password($USER, $REALM) eq $PWD, "get original after changes in other group works");
 }
 
 # Cleanup

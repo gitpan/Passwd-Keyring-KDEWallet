@@ -12,11 +12,11 @@ Passwd::Keyring::KDEWallet - Password storage implementation based on KDE Wallet
 
 =head1 VERSION
 
-Version 0.2002
+Version 0.2003
 
 =cut
 
-our $VERSION = '0.2002';
+our $VERSION = '0.2003';
 
 our $APP_NAME = "Passwd::Keyring";
 our $FOLDER_NAME = "Perl-Passwd-Keyring";
@@ -106,23 +106,23 @@ sub _open_if_not_open {
       or croak("Failed to open the KDE wallet");
 }
 
-=head2 set_password(username, password, domain)
+=head2 set_password(username, password, realm)
 
-Sets (stores) password identified by given domain for given user 
+Sets (stores) password identified by given realm for given user 
 
 =cut
 
 sub set_password {
-    my ($self, $user_name, $user_password, $domain) = @_;
+    my ($self, $user_name, $user_password, $realm) = @_;
     $self->_open_if_not_open();
     my $status = $self->{kwallet}->writePassword(
-        $self->{handle}, $self->{group}, "$domain || $user_name", $user_password, $self->{app});
+        $self->{handle}, $self->{group}, "$realm || $user_name", $user_password, $self->{app});
     if($status) { # non-zero means failure
-        croak("Failed to save the password (status $status, user name $user_name, domain $domain, handle $self->{handle}, group $self->{group})");
+        croak("Failed to save the password (status $status, user name $user_name, realm $realm, handle $self->{handle}, group $self->{group})");
     }
 }
 
-=head2 get_password($user_name, $domain)
+=head2 get_password($user_name, $realm)
 
 Reads previously stored password for given user in given app.
 If such password can not be found, returns undef.
@@ -130,10 +130,10 @@ If such password can not be found, returns undef.
 =cut
 
 sub get_password {
-    my ($self, $user_name, $domain) = @_;
+    my ($self, $user_name, $realm) = @_;
     $self->_open_if_not_open();
     my $reply = $self->{kwallet}->readPassword(
-        $self->{handle}, $self->{group}, "$domain || $user_name", $self->{app});
+        $self->{handle}, $self->{group}, "$realm || $user_name", $self->{app});
     # In case of missing passsword we get empty string. I do not know
     # whether it is possible to distinguish missing password from empty password,
     # but empty passwords are exotic enough to ignore.
@@ -141,17 +141,17 @@ sub get_password {
     return $reply;
 }
 
-=head2 clear_password($user_name, $domain)
+=head2 clear_password($user_name, $realm)
 
 Removes given password (if present)
 
 =cut
 
 sub clear_password {
-    my ($self, $user_name, $domain) = @_;
+    my ($self, $user_name, $realm) = @_;
     $self->_open_if_not_open();
     my $status = $self->{kwallet}->removeEntry(
-        $self->{handle}, $self->{group}, "$domain || $user_name", $self->{app});
+        $self->{handle}, $self->{group}, "$realm || $user_name", $self->{app});
     if($status == 0) {
         return 1;
     } else {

@@ -1,5 +1,9 @@
 Revision history for Passwd::Keyring::KDEWallet
 
+0.2003	2012-11-11
+	Skipping tests if not running under desktop session, so the
+        module can be installed from root shell etc.
+
 0.2002	2012-11-09
         Documentation updates.
 
