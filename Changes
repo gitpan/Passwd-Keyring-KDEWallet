@@ -1,5 +1,9 @@
 Revision history for Passwd::Keyring::KDEWallet
 
+0.2005	2012-11-15
+	Fixed bugs in package dependencies and metadata (wrong homepage
+        and repository page links etc)
+
 0.2004	2012-11-11
 	Added example
 

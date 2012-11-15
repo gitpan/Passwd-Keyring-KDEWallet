@@ -2,7 +2,6 @@ use 5.006;
 use strict;
 use warnings;
 use Module::Build;
-use ExtUtils::PkgConfig;
 
 my $builder = Module::Build->new(
     module_name         => 'Passwd::Keyring::KDEWallet',
@@ -11,7 +10,6 @@ my $builder = Module::Build->new(
 
     build_requires => {
         'Module::Build' => '0.19', # xs
-        'ExtUtils::CBuilder' => 0,
         'Test::More' => 0,
         'Test::Pod::Coverage' => '1.0',
         'Pod::Readme' => 0,
@@ -34,9 +32,9 @@ my $builder = Module::Build->new(
         keywords => [ qw/ passwords security secure-storage keyring KDE KDEWallet / ],
         resources => {
             license     => 'http://dev.perl.org/licenses/',
-            homepage    => 'http://bitbucket.org/Mekk/perl-keyring-auto',
-            repository => 'http://bitbucket.org/Mekk/perl-keyring-auto',
-            bugtracker => 'https://bitbucket.org/Mekk/perl-keyring-auto/issues',
+            homepage    => 'http://bitbucket.org/Mekk/perl-keyring-kdewallet',
+            repository => 'http://bitbucket.org/Mekk/perl-keyring-kdewallet',
+            bugtracker => 'https://bitbucket.org/Mekk/perl-keyring-kdewallet/issues',
         },
     },
 );
