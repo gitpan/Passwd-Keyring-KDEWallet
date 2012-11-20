@@ -3,7 +3,7 @@ NAME
     KDE Wallet.
 
 VERSION
-    Version 0.2005
+    Version 0.2006
 
 SYNOPSIS
     KDE Wallet based implementation of Passwd::Keyring.
@@ -36,8 +36,8 @@ SYNOPSIS
 
 SUBROUTINES/METHODS
   new(app=>'app name', group=>'passwords folder')
-    Initializes the processing. Croaks if kwallet does not seem to be
-    available.
+    Initializes the processing. Croaks if kwallet (or d-bus, or anything
+    needed) does not seem to be available.
 
     Handled named parameters:
 

@@ -26,54 +26,62 @@ my $PWD1_ALT = "secret-Paul2 ąąąą";
 my $PWD2 = "secret-Greg";
 my $PWD4 = "secret-Duke";
 
-my $ring = Passwd::Keyring::KDEWallet->new(app=>"Passwd::Keyring::KDEWallet", group=>"Unit tests (secrets)");
+SKIP: {
 
-ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet',   'new() works' );
+    my $ring; 
+    eval {
+        $ring = Passwd::Keyring::KDEWallet->new(app=>"Passwd::Keyring::KDEWallet", group=>"Unit tests (secrets)");
+    }; if($@) {
+        if($@ =~ /^KWallet not available/) {
+            skip "KWallet not available ($@)", 20;
+        } else {
+            die $@;
+        }
+    }
 
-$ring->set_password($USER1, $PWD1, $REALM_B);
-$ring->set_password($USER2, $PWD2, $REALM_B);#
-$ring->set_password($USER1, $PWD1_ALT, $REALM_C);
-$ring->set_password($USER4, $PWD4, $REALM_B);
+    ok( defined($ring) && ref $ring eq 'Passwd::Keyring::KDEWallet',   'new() works' );
 
-ok( 1, "set_password works" );
+    $ring->set_password($USER1, $PWD1, $REALM_B);
+    $ring->set_password($USER2, $PWD2, $REALM_B); #
+    $ring->set_password($USER1, $PWD1_ALT, $REALM_C);
+    $ring->set_password($USER4, $PWD4, $REALM_B);
 
-ok( $ring->get_password($USER1, $REALM_B) eq $PWD1, "get works");
+    ok( 1, "set_password works" );
 
-ok( $ring->get_password($USER2, $REALM_B) eq $PWD2, "get works");
+    ok( $ring->get_password($USER1, $REALM_B) eq $PWD1, "get works");
 
-ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
+    ok( $ring->get_password($USER2, $REALM_B) eq $PWD2, "get works");
 
-ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
+    ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
 
-$ring->clear_password($USER1, $REALM_B);
-ok(1, "clear_password works");
+    ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
 
-ok( ! defined($ring->get_password($USER1, $REALM_A)), "get works");
+    $ring->clear_password($USER1, $REALM_B);
+    ok(1, "clear_password works");
 
-ok( ! defined($ring->get_password($USER2, $REALM_A)), "get works");
+    ok( ! defined($ring->get_password($USER1, $REALM_A)), "get works");
 
-ok( $ring->get_password($USER2, $REALM_B) eq $PWD2, "get works");
+    ok( ! defined($ring->get_password($USER2, $REALM_A)), "get works");
 
-ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
+    ok( $ring->get_password($USER2, $REALM_B) eq $PWD2, "get works");
 
-ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
+    ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
 
-ok( $ring->clear_password($USER2, $REALM_B) eq 1, "clear clears");
+    ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
 
-ok( ! defined($ring->get_password($USER2, $REALM_A)), "clear cleared");
+    ok( $ring->clear_password($USER2, $REALM_B) eq 1, "clear clears");
 
-ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
+    ok( ! defined($ring->get_password($USER2, $REALM_A)), "clear cleared");
 
-ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
+    ok( $ring->get_password($USER1, $REALM_C) eq $PWD1_ALT, "get works");
 
-ok( $ring->clear_password($USER1, $REALM_C) eq 1, "clear clears");
+    ok( $ring->get_password($USER4, $REALM_B) eq $PWD4, "get works");
 
-ok( $ring->clear_password($USER4, $REALM_B) eq 1, "clear clears");
+    ok( $ring->clear_password($USER1, $REALM_C) eq 1, "clear clears");
 
-ok( ! defined($ring->get_password($USER1, $REALM_C)), "clear cleared");
-ok( ! defined($ring->get_password($USER4, $REALM_B)), "clear cleared");
+    ok( $ring->clear_password($USER4, $REALM_B) eq 1, "clear clears");
 
+    ok( ! defined($ring->get_password($USER1, $REALM_C)), "clear cleared");
+    ok( ! defined($ring->get_password($USER4, $REALM_B)), "clear cleared");
 
-
-
-
+}

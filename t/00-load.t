@@ -9,4 +9,4 @@ BEGIN {
 }
 
 diag( "Testing Passwd::Keyring::KDEWallet $Passwd::Keyring::KDEWallet::VERSION, Perl $], $^X" );
-diag( "Consider spawning  kwalletmanager  to check whether some passwords remained uncleared" );
+diag( "Consider spawning  kwalletmanager  to observe test consequences" );

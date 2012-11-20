@@ -12,11 +12,11 @@ Passwd::Keyring::KDEWallet - Password storage implementation based on KDE Wallet
 
 =head1 VERSION
 
-Version 0.2005
+Version 0.2006
 
 =cut
 
-our $VERSION = '0.2005';
+our $VERSION = '0.2006';
 
 our $APP_NAME = "Passwd::Keyring";
 our $FOLDER_NAME = "Perl-Passwd-Keyring";
@@ -55,7 +55,7 @@ C<Passwd::Keyring::Auto> package).
 
 =head2 new(app=>'app name', group=>'passwords folder')
 
-Initializes the processing. Croaks if kwallet does not 
+Initializes the processing. Croaks if kwallet (or d-bus, or anything needed) does not 
 seem to be available.
 
 Handled named parameters: 
@@ -78,8 +78,18 @@ sub new {
     #$self->{bus} = Net::DBus->find()
     $self->{bus} = Net::DBus->session()
       or croak("KWallet not available (can't access DBus)");
-    my $kwallet_svc = $self->{bus}->get_service('org.kde.kwalletd')
-      or croak("KWallet not available (can't access KWallet, likely kwalletd not running)");
+    # get_service also may fail by itself, I got cpantesters reports with message
+    # "org.freedesktop.DBus.Error.ServiceUnknown: The name org.kde.kwalletd was not provided by any .service files"
+    # Let's rewrite this slightly
+    my$kwallet_svc;
+    eval {
+        $kwallet_svc = $self->{bus}->get_service('org.kde.kwalletd');
+    };
+    if($@) {
+        croak("KWallet not available (not installed?). Details:\n$@");
+    } elsif (! $kwallet_svc) {
+        croak("KWallet not available (can't access KWallet, likely kwalletd not running)");
+    }
     $self->{kwallet} = $kwallet_svc->get_object('/modules/kwalletd', 'org.kde.KWallet')
       or croak("Kwallet not available (can't find wallet)");
     $self->_open_if_not_open();

@@ -1,5 +1,12 @@
 Revision history for Passwd::Keyring::KDEWallet
 
+0.2006	2012-11-20
+	Tests don't fail but are skipped when module is built on
+	system with DBUS but without KDEWallet.
+
+        Unifying exception texts.
+
+
 0.2005	2012-11-15
 	Fixed bugs in package dependencies and metadata (wrong homepage
         and repository page links etc)

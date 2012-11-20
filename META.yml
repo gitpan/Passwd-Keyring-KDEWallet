@@ -26,7 +26,7 @@ name: Passwd-Keyring-KDEWallet
 provides:
   Passwd::Keyring::KDEWallet:
     file: lib/Passwd/Keyring/KDEWallet.pm
-    version: 0.2005
+    version: 0.2006
 requires:
   Net::DBus: 0
   perl: 5.006
@@ -35,4 +35,4 @@ resources:
   homepage: http://bitbucket.org/Mekk/perl-keyring-kdewallet
   license: http://dev.perl.org/licenses/
   repository: http://bitbucket.org/Mekk/perl-keyring-kdewallet
-version: 0.2005
+version: 0.2006

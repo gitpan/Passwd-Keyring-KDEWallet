@@ -3,15 +3,22 @@
 use strict;
 use warnings;
 use Test::More;
+use Passwd::Keyring::KDEWallet;
 
 if($ENV{DESKTOP_SESSION} || $ENV{DBUS_SESSION_BUS_ADDRESS}) {
-    plan tests => 16;
+    eval { Passwd::Keyring::KDEWallet->new() };
+    unless($@) {
+        plan tests => 16;
+    } elsif($@ =~ /^KWallet not available/) {
+        plan skip_all => "KWallet not available ($@)";
+    } else {
+        plan tests => 16;
+        die $@;
+    }
 } else {
     plan skip_all => "Keyring not available (not running under KDE/Gnome/other desktop session), skipping tests";
 }
 
-
-use Passwd::Keyring::KDEWallet;
 
 my $USER = "Herakliusz";
 my $REALM = "test realm";

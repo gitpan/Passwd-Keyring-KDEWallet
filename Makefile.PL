@@ -3,17 +3,17 @@ require 5.006;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-  'PL_FILES' => {},
-  'INSTALLDIRS' => 'site',
   'NAME' => 'Passwd::Keyring::KDEWallet',
-  'EXE_FILES' => [],
   'VERSION_FROM' => 'lib/Passwd/Keyring/KDEWallet.pm',
   'PREREQ_PM' => {
-                   'Test::More' => 0,
-                   'Test::Pod::Coverage' => '1.0',
-                   'Net::DBus' => 0,
                    'Module::Build' => '0.19',
-                   'Pod::Readme' => 0
-                 }
+                   'Net::DBus' => 0,
+                   'Pod::Readme' => 0,
+                   'Test::More' => 0,
+                   'Test::Pod::Coverage' => '1.0'
+                 },
+  'INSTALLDIRS' => 'site',
+  'EXE_FILES' => [],
+  'PL_FILES' => {}
 )
 ;
