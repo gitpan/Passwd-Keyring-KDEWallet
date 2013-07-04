@@ -1,5 +1,10 @@
 Revision history for Passwd::Keyring::KDEWallet
 
+0.2007	2013-07-04
+	Distribute example script.
+
+	(bitbucket #1) Documentation contained wrong example of using set_password
+
 0.2006	2012-11-20
 	Tests don't fail but are skipped when module is built on
 	system with DBUS but without KDEWallet.

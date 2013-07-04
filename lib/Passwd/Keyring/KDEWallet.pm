@@ -12,11 +12,11 @@ Passwd::Keyring::KDEWallet - Password storage implementation based on KDE Wallet
 
 =head1 VERSION
 
-Version 0.2006
+Version 0.2007
 
 =cut
 
-our $VERSION = '0.2006';
+our $VERSION = '0.2007';
 
 our $APP_NAME = "Passwd::Keyring";
 our $FOLDER_NAME = "Perl-Passwd-Keyring";
@@ -39,7 +39,7 @@ KDE Wallet based implementation of L<Passwd::Keyring>.
         $password = <somehow interactively prompt for password>;
 
         # securely save password for future use
-        $keyring->set_password($username, "blahblah.com");
+        $keyring->set_password($username, $password, "blahblah.com");
     }
 
     login_somewhere_using($username, $password);

@@ -22,6 +22,10 @@ my $builder = Module::Build->new(
         'Net::DBus' => 0,
     },
 
+    share_dir => {
+        dist => [ 'example' ],
+    },
+
     create_makefile_pl => 'traditional',
     add_to_cleanup      => [ 'Passwd-Keyring-KDEWallet-*' ],
 

@@ -3,7 +3,7 @@ NAME
     KDE Wallet.
 
 VERSION
-    Version 0.2006
+    Version 0.2007
 
 SYNOPSIS
     KDE Wallet based implementation of Passwd::Keyring.
@@ -22,7 +22,7 @@ SYNOPSIS
             $password = <somehow interactively prompt for password>;
 
             # securely save password for future use
-            $keyring->set_password($username, "blahblah.com");
+            $keyring->set_password($username, $password, "blahblah.com");
         }
 
         login_somewhere_using($username, $password);

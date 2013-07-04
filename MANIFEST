@@ -7,7 +7,7 @@ MANIFEST			This list of files
 META.json
 META.yml
 README
-sample/imap_query_kdewallet_sample.pl
+example/imap_query_example.pl
 t/00-load.t
 t/01-set-and-get.t
 t/02-is-persistent.t
