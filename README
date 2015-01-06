@@ -1,30 +1,33 @@
 NAME
+
     Passwd::Keyring::KDEWallet - Password storage implementation based on
     KDE Wallet.
 
 VERSION
-    Version 0.2007
+
+    Version 0.2008
 
 SYNOPSIS
+
     KDE Wallet based implementation of Passwd::Keyring.
 
         use Passwd::Keyring::KDEWallet;
-
+    
         my $keyring = Passwd::Keyring::KDEWallet->new(
              app=>"blahblah scraper",
              group=>"Johnny web scrapers",
         );
-
+    
         my $username = "John";  # or get from .ini, or from .argv...
-
+    
         my $password = $keyring->get_password($username, "blahblah.com");
         unless( $password ) {
             $password = <somehow interactively prompt for password>;
-
+    
             # securely save password for future use
             $keyring->set_password($username, $password, "blahblah.com");
         }
-
+    
         login_somewhere_using($username, $password);
         if( password_was_wrong ) {
             $keyring->clear_password($username, "blahblah.com");
@@ -32,10 +35,12 @@ SYNOPSIS
 
     Note: see Passwd::Keyring::Auto::KeyringAPI for detailed comments on
     keyring method semantics (this document is installed with
-    `Passwd::Keyring::Auto' package).
+    Passwd::Keyring::Auto package).
 
 SUBROUTINES/METHODS
-  new(app=>'app name', group=>'passwords folder')
+
+ new(app=>'app name', group=>'passwords folder')
+
     Initializes the processing. Croaks if kwallet (or d-bus, or anything
     needed) does not seem to be available.
 
@@ -46,32 +51,39 @@ SUBROUTINES/METHODS
 
     - group - name for the password group (used as KDE Wallet folder name)
 
-  set_password(username, password, realm)
+ set_password(username, password, realm)
+
     Sets (stores) password identified by given realm for given user
 
-  get_password($user_name, $realm)
+ get_password($user_name, $realm)
+
     Reads previously stored password for given user in given app. If such
     password can not be found, returns undef.
 
-  clear_password($user_name, $realm)
+ clear_password($user_name, $realm)
+
     Removes given password (if present)
 
-  is_persistent
+ is_persistent
+
     Returns info, whether this keyring actually saves passwords
     persistently.
 
     (true in this case)
 
 AUTHOR
+
     Marcin Kasperski
 
     Approach inspired by http://www.perlmonks.org/?node_id=869620.
 
 BUGS
+
     Please report any bugs or feature requests to issue tracker at
     https://bitbucket.org/Mekk/perl-keyring-kdewallet.
 
 SUPPORT
+
     You can find documentation for this module with the perldoc command.
 
         perldoc Passwd::Keyring::KDEWallet
@@ -85,6 +97,7 @@ SUPPORT
     https://bitbucket.org/Mekk/perl-keyring-kdewallet
 
 LICENSE AND COPYRIGHT
+
     Copyright 2012 Marcin Kasperski.
 
     This program is free software; you can redistribute it and/or modify it
